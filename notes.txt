@@ -1,0 +1,47 @@
+GET SECRET KEY/ TOKEN
+
+Step 1: Create a Spotify Developer App
+Go to the Spotify Developer Dashboard.
+Log in with your Spotify account.
+Click Create an App (or select an existing app).
+Fill in the required details (e.g., App Name, App Description) and click Create.
+
+
+Step 2: Get the Client ID and Client Secret
+Navigate to Your App:
+
+In the dashboard, click on your app to open its details.
+Locate Client ID:
+
+You’ll see your Client ID displayed on the app details page.
+Reveal Client Secret:
+
+Click the "Show Client Secret" button to view your Client Secret.
+Copy both the Client ID and Client Secret.
+
+
+Step 3: Use in Postman
+Set Up Authorization in Postman:
+
+Open Postman and create a new request.
+Set the request method to POST and the URL to https://accounts.spotify.com/api/token.
+Authorization Header:
+
+In the "Authorization" tab, choose Basic Auth.
+Enter the Client ID as the username and Client Secret as the password.
+Set Request Body:
+
+In the "Body" tab, choose x-www-form-urlencoded.
+Add the following key-value pairs:
+grant_type: client_credentials
+Send the Request:
+
+Click Send.
+If successful, Spotify will return an access token in the response:
+json
+Copy code
+{
+    "access_token": "BQD...",
+    "token_type": "Bearer",
+    "expires_in": 3600
+}

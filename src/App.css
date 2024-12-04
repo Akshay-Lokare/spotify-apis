@@ -1,38 +1,260 @@
-.App {
+/* Style for Playlists page */
+.playlists-container {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+ul li a:hover {
+  color: #0056b3;
+}
+
+ul li strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+ul li p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Styling for empty descriptions */
+ul li .no-description {
+  font-style: italic;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  ul li {
+    padding: 12px;
+  }
+}
+
+
+
+/* Style for NotFound page */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+  font-family: 'Arial', sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.not-found-h3 {
+  font-size: 4rem;
+  color: #d9534f;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.not-found-p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.not-found-a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.not-found-a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .not-found-h3 {
+    font-size: 3rem;
+  }
+
+  .not-found-p {
+    font-size: 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Main navbar container */
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 15px 30px;
+  background: linear-gradient(90deg, #4facfe, #00f2fe); /* Gradient background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 8px; /* Rounded edges */
+  margin: 10px auto; /* Adds spacing around */
+  max-width: 1200px; /* Centers the navbar on larger screens */
+}
+
+/* Logo / home link styling */
+.navbar-h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-h3 a {
+  text-decoration: none;
+  color: inherit; /* Matches text color */
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar-h3 a:hover {
+  color: #ffd700; /* Golden hover effect */
+  transform: scale(1.1); /* Slightly larger on hover */
 }
+
+/* Button styling */
+.navbar-btn {
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #000;
+  background-color: rgba(0, 255, 255, 0.632); /* Simple blue background */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+  background-color: white; /* Darker blue on hover */
+}
+
+.navbar-btn:active {
+  background-color: cyan; /* Even darker blue on click */
+}
+
+.playlist-btn {
+  padding: 8px 16px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: black; /* Black text */
+  background-color: white; /* White background */
+  border: 2px solid black; /* Black border for definition */
+  border-radius: 5px; /* Subtle rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.playlist-btn:hover {
+  background-color: black; /* Black background on hover */
+  color: white; /* White text on hover */
+}
+
+.playlist-btn:active {
+  background-color: #333; /* Darker black on click */
+  color: white; /* Keep text white */
+}
+
+.top-tracks {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+
+.top-tracks h3 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.top-tracks ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.top-tracks li {
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.top-tracks li img {
+  border-radius: 4px;
+}
+
+.top-tracks li a {
+  text-decoration: none;
+  color: #1db954; /* Spotify Green */
+  font-weight: bold;
+}
+
+.top-tracks li a:hover {
+  text-decoration: underline;
+}
+
+.top-tracks li div {
+  flex-grow: 1;
+}
+
+.top-tracks li h4 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.top-tracks li p {
+  font-size: 14px;
+  color: #666;
+}
+
+.top-tracks li .artist {
+  font-style: italic;
+  color: #999;
+}
+
+

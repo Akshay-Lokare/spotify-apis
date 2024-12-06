@@ -1,4 +1,4 @@
-/* Style for Playlists page */
+
 .playlists-container {
   padding: 20px;
   font-family: 'Arial', sans-serif;
@@ -257,4 +257,43 @@ ul li .no-description {
   color: #999;
 }
 
+.userinfo {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  background: linear-gradient(120deg, #89f7fe, #66a6ff);
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
+}
 
+.userinfo-h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #004aad;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.userinfo p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  color: #f0f0f0;
+}
+
+.userinfo p:nth-child(even) {
+  color: #f0f0f0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

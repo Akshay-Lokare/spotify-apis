@@ -3,47 +3,58 @@ import Navbar from './Navbar';
 import axios from 'axios';
 
 export default function Home() {
-  const [username, setUsername] = useState('');
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Fetch the username from the backend
   useEffect(() => {
-    fetch("http://localhost:3000/user", {
-      credentials: "include", // Ensures cookies are sent with the request
-    })
+    axios.get('http://localhost:3000/user', { withCredentials: true })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        return response.json();
+        setUserData(response.data);
       })
-      .then((data) => setUsername(data.displayName))
-      .catch((error) => console.error("Error fetching username:", error));
+      .catch((error) => {
+        setError("Failed to fetch user data.");
+        console.error(error);
+      });
   }, []);
 
-  // Get username from URL parameters
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const user = params.get("user");
-    if (user) setUsername(user);
-  }, []);
-  
-  // Navigate to playlist page
   function playlist() {
     window.location.href = 'http://localhost:3001/playlists';
   }
 
-  // Navigate to top tracks page
   function topTracks() {
     window.location.href = 'http://localhost:3001/top-tracks';
+  }
+
+  function userInfo() {
+    window.location.href = 'http://localhost:3001/user-info';
   }
 
   return (
     <div className='home'>
       <Navbar />
-      <h3>Home | {username}</h3>
-      <p>Home Component</p>
+
+      <h3 style={{ padding: '10px' }}>
+        <span style={{ backgroundColor: 'pink', padding: '5px', color: 'white', borderRadius: '12px' }}>
+          Home | {userData ? userData.name : 'Guest'}
+        </span>
+      </h3>
+
+      {userData ? (
+        <div className="user-info">
+          <p><strong>Name:</strong> {userData.name}</p>
+          <p><strong>Email:</strong> {userData.email}</p>
+          <p><strong>Country:</strong> {userData.country}</p>
+          <p><strong>ID:</strong> {userData.id}</p>
+        </div>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <p>Loading...</p>
+      )}
+
       <button onClick={playlist} className='playlist-btn'>Playlist</button><br />
-      <button onClick={topTracks} className='playlist-btn'>Top Tracks</button>
+      <button onClick={topTracks} className='playlist-btn'>Top Tracks</button><br />
+      <button onClick={userInfo} className='playlist-btn'>User Info</button><br />
     </div>
   );
 }

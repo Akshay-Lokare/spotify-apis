@@ -5,6 +5,8 @@ import Home from './components/Home';
 import Playlists from './components/Playlists';
 import UserInfo from './components/UserInfo';
 import TopTracks from './components/TopTracks';
+import SavedAlbums from './components/SavedAlbums';
+import LikedTracks from './components/LikedSongs';
 import NotFound from './components/Not-Found';
 
 const router = createBrowserRouter([
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
   {
     path: '/top-tracks',
     element: <TopTracks />
+  },
+  {
+    path: '/saved-albums',
+    element: <SavedAlbums />
+  },
+  {
+    path: '/liked-tracks',
+    element: <LikedTracks />
   },
   {
     path: '*',

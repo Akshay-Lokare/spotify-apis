@@ -34,6 +34,7 @@ const UserInfo = () => {
         <p>Email: {userData.email}</p>
         <p>Country: {userData.country}</p>
         <p>Followers: {userData.followers}</p>
+        <p>Id: {userData.id}</p>
       </div>
     </div>
   );

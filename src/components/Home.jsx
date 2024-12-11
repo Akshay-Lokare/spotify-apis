@@ -29,6 +29,15 @@ export default function Home() {
     window.location.href = 'http://localhost:3001/user-info';
   }
 
+  function savedAlbums() {
+    window.location.href = 'http://localhost:3001/saved-albums';
+  }
+
+  function likedSongs () {
+    window.location.href = 'http://localhost:3001/liked-tracks'
+  }
+
+
   return (
     <div className='home'>
       <Navbar />
@@ -39,22 +48,11 @@ export default function Home() {
         </span>
       </h3>
 
-      {userData ? (
-        <div className="user-info">
-          <p><strong>Name:</strong> {userData.name}</p>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Country:</strong> {userData.country}</p>
-          <p><strong>ID:</strong> {userData.id}</p>
-        </div>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <p>Loading...</p>
-      )}
-
       <button onClick={playlist} className='playlist-btn'>Playlist</button><br />
       <button onClick={topTracks} className='playlist-btn'>Top Tracks</button><br />
       <button onClick={userInfo} className='playlist-btn'>User Info</button><br />
+      <button onClick={savedAlbums} className='playlist-btn'>Saved Albums</button><br />
+      <button onClick={likedSongs} className='playlist-btn'>Liked Songs</button><br />
     </div>
   );
 }

@@ -4,6 +4,8 @@ const axios = require("axios");
 const querystring = require("querystring");
 require("dotenv").config();
 const session = require("express-session");
+const { ScanStream } = require("ioredis");
+const { clearScreenDown } = require("readline");
 
 const app = express();
 const PORT = 3000;
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    const scope = "user-read-private user-read-email user-top-read";  // Permissions for user info
+    const scope = "user-read-private user-read-email user-top-read user-library-read";  // Permissions for user info
     const authUrl = `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: "code",
         client_id,
@@ -167,5 +169,101 @@ app.get('/top-songs', async (req, res) => {
         res.status(500).send("Error fetching top tracks.");
     }
 });
+
+app.get('/saved-albums', async (req, res) => {
+    if(!req.session.accessToken) {
+        return res.status(401).send("Unauthorized: No access token found. Login to get the new token.");
+    }
+
+    try {
+        const savedAlbumsResponse = await axios.get('https://api.spotify.com/v1/me/albums', {
+            headers: { Authorization: `Bearer ${req.session.accessToken}` },
+            params: {
+                limit: 10,
+            }
+        })
+
+        const savedAlbums = savedAlbumsResponse.data.items;
+
+        res.status(200).json({
+            savedAlbums: savedAlbums.map((item) => ({
+                name: item.album.name,
+                link: item.external_urls ? item.external_urls.spotify : null,
+                image: item.album.images[0].url
+            }))
+        });
+
+    } catch (error) {
+        console.error("Error fetching albums:", error.response?.data || error.message);
+        res.status(500).send("Error fetching albums.");
+    }
+
+});
+
+//hide for now
+app.get('/cat', async (req, res) => {
+    if (!req.session.accessToken) {
+        return res.status(401).send("Unauthorized: No access token found. Login to get the new token.");
+    }
+
+    try {
+        const categoriesResponse = await axios.get('https://api.spotify.com/v1/browse/categories', {
+            headers: { Authorization: `Bearer ${req.session.accessToken}` },
+            params: {
+                limit: 10,
+            }
+        });
+
+        const categories = categoriesResponse.data.categories.items;
+
+        res.status(200).json({
+            categories: categories.map((item) => ({
+                name: item.name,
+                id: item.id,
+                image: item.icons[0]?.url,
+                link: item.href,
+            }))
+        });
+
+    } catch (error) {
+        console.error("Error fetching categories:", error.response?.data || error.message);
+        res.status(500).send("Error fetching categories.");
+    }
+});
+
+app.get('/liked-tracks', async (req, res) => {
+    if (!req.session.accessToken) {
+        return res.status(401).send("Unauthorized: No access token found. Login to get the new token.");
+    }
+
+    try {
+        // Set limit to 50, which is the max allowed by Spotify for this endpoint
+        const savedTracksResponse = await axios.get('https://api.spotify.com/v1/me/tracks', {
+            headers: { Authorization: `Bearer ${req.session.accessToken}` },
+            params: {
+                limit: 50,  // Maximum allowed limit for the me/tracks endpoint
+                offset: 0   // Starting from the first item
+            }
+        });
+
+        const savedTracks = savedTracksResponse.data.items;
+
+        res.status(200).json({
+            savedTracks: savedTracks.map((item) => ({
+                name: item.track.name,
+                artist: item.track.artists.map(artist => artist.name).join(", "),
+                album: item.track.album.name,
+                href: item.track.external_urls.spotify,
+                image: item.track.album.images[0]?.url, 
+
+            }))
+        });
+
+    } catch (error) {
+        console.error("Error fetching saved tracks:", error.response?.data || error.message);
+        res.status(500).send("Error fetching saved tracks.");
+    }
+});
+
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));

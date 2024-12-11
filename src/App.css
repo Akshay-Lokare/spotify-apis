@@ -141,7 +141,7 @@ ul li .no-description {
 }
 
 .navbar-h3 a:hover {
-  color: #ffd700; /* Golden hover effect */
+  color: #00ff9d; /* Golden hover effect */
   transform: scale(1.1); /* Slightly larger on hover */
 }
 
@@ -151,7 +151,7 @@ ul li .no-description {
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  color: #000;
+  color: #004D40;
   background-color: rgba(0, 255, 255, 0.632); /* Simple blue background */
   border: none;
   border-radius: 5px;
@@ -296,4 +296,142 @@ ul li .no-description {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+/* Basic container styles */
+.categories-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.categories-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grid for displaying the categories */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Styling for each category card */
+.category-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for the category image */
+.category-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* Styling for the category name */
+.category-name {
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.category-card a {
+  text-decoration: none; /* Remove underline from Link */
+}
+
+.category-card img {
+  border-bottom: 3px solid #ddd;
+}
+
+/* LikedTracks.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa;
+  margin: 0;
+  padding: 0;
+  color: #004d40;
+}
+
+.liked-tracks {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.liked-tracks-title {
+  font-size: 28px;
+  text-align: left;
+  color: #00796b;
+  margin-bottom: 20px;
+}
+
+.liked-tracks-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.liked-tracks-header {
+  background-color: #00796b;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.liked-tracks-cell {
+  border: 1px solid #b2dfdb;
+  text-align: left;
+  padding: 10px;
+}
+
+.liked-tracks-link {
+  color: #004d40;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.liked-tracks-link:hover {
+  text-decoration: underline;
+}
+
+.liked-tracks-row:nth-child(even) {
+  background-color: #e0f2f1;
+}
+
+.liked-tracks-error {
+  color: #d32f2f;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.liked-tracks-loading {
+  text-align: center;
+  color: #004d40;
+  font-size: 16px;
+}
+
+.liked-tracks-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  margin-right: 10px;
 }
